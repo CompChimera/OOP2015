@@ -36,7 +36,7 @@ ChocolateBar *ChocolateBar::findAndClone(barType type)
 		return _prototypes[i]->clone();
 }
 
-class solidChocolateBar : public ChocolateBar
+class SolidChocolateBar : public ChocolateBar
 {
 public:
 	barType returnType()
@@ -45,25 +45,25 @@ public:
 	}
 	void draw()
 	{
-		cout << "solidChocolateBar::draw " << _id << endl;
+		cout << "SolidChocolateBar::draw " << _id << endl;
 	}
 	// When clone() is called, call the one-argument ctor with a dummy arg
 	ChocolateBar *clone()
 	{
-		return new solidChocolateBar(1);
+		return new SolidChocolateBar(1);
 	}
 protected:
 	// This is only called from clone()
-	solidChocolateBar(int dummy)
+	SolidChocolateBar(int dummy)
 	{
 		_id = _count++;
 	}
 private:
 	// Mechanism for initializing an Image subclass - this causes the
 	// default ctor to be called, which registers the subclass's prototype
-	static solidChocolateBar _landSatImage;
+	static SolidChocolateBar _pureChocolate;
 	// This is only called when the private static data member is inited
-	solidChocolateBar()
+	SolidChocolateBar()
 	{
 		addPrototype(this);
 	}
@@ -73,64 +73,53 @@ private:
 };
 
 // Register the subclass's prototype
-solidChocolateBar solidChocolateBar::_pureChocolate;
+SolidChocolateBar SolidChocolateBar::_pureChocolate;
 // Initialize the "state" per instance mechanism
-int solidChocolateBar::_count = 1;
+int SolidChocolateBar::_count = 1;
 
-class SpotImage : public ChocolateBar
+class NutChocolateBar : public ChocolateBar
 {
 public:
-	imageType returnType()
+	barType returnType()
 	{
-		return SPOT;
+		return withNuts;
 	}
 	void draw()
 	{
-		cout << "SpotImage::draw " << _id << endl;
+		cout << "NutChocolateBar::draw " << _id << endl;
 	}
 	ChocolateBar *clone()
 	{
-		return new SpotImage(1);
+		return new NutChocolateBar(1);
 	}
 protected:
-	SpotImage(int dummy)
+	NutChocolateBar(int dummy)
 	{
 		_id = _count++;
 	}
 private:
-	SpotImage()
+	NutChocolateBar()
 	{
 		addPrototype(this);
 	}
-	static SpotImage _spotImage;
+	static NutChocolateBar _spotImage;
 	int _id;
 	static int _count;
 };
 
-SpotImage SpotImage::_spotImage;
-int SpotImage::_count = 1;
+NutChocolateBar NutChocolateBar::_withNuts;
+int NutChocolateBar::_count = 1;
 
-// Simulated stream of creation requests
-const int NUM_IMAGES = 8;
-imageType input[NUM_IMAGES] =
+//Variables to be used in the main function
+const int NUM_BARS = 4;
+barType input[NUM_BARS] =
 {
-	LSAT, LSAT, LSAT, SPOT, LSAT, SPOT, SPOT, LSAT
+	pureChocolate, withNuts, withNuts, withNuts
 };
 
 int main()
 {
-	ChocolateBar *images[NUM_IMAGES];
+	ChocolateBar *bars[NUM_BARS];
 
-	// Given an image type, find the right prototype, and return a clone
-	for (int i = 0; i < NUM_IMAGES; i++)
-		images[i] = ChocolateBar::findAndClone(input[i]);
-
-	// Demonstrate that correct image objects have been cloned
-	for (i = 0; i < NUM_IMAGES; i++)
-		images[i]->draw();
-
-	// Free the dynamic memory
-	for (i = 0; i < NUM_IMAGES; i++)
-		delete images[i];
 }
 
