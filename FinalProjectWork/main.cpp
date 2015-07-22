@@ -116,6 +116,7 @@ void createFilesW() {
 
     //all user accounts information
     fileCreation.open("OS32\\systems\\account\\user-accounts.txt");
+    fileCreation << "admin\npassword\n";
     fileCreation << "" << std::endl;
     fileCreation.close();
 
