@@ -61,31 +61,19 @@ void createDirectories(char curOS) {
     }
     else if( curOS == 'm' ){
         mkdir("OS32", 0777);
-        mkdir("OS32\\systems", 0777);
-        mkdir("OS32\\systems\\account", 0777);
+        mkdir("OS32/systems", 0777);
+        mkdir("OS32/systems/account", 0777);
     }
     else {
         mkdir("OS32", 0777);
-        mkdir("OS32\\systems", 0777);
-        mkdir("OS32\\systems\\account", 0777);
+        mkdir("OS32/systems", 0777);
+        mkdir("OS32/systems/account", 0777);
     }
 }
-//Removing directories at the end of execution
-//To be maybe written by Brittany
-//Requires all the files be deleted first
-/*
-void removeDirectories() {
-    //TEST: Removing the directories right away so I don't have a backlog of directories while testing
-    if(!rmdir(cSystemPath)) {
-        printf("There was a problem removing the directory");
-        return 1;
-    }
-    printf("The directory was removed\n");
-}*/
 
 //Creates the startup files
 //Written by Izik Arruda
-void createFiles() {
+void createFilesW() {
 
     //create a stream to output the files' contents
     std::ofstream fileCreation;
@@ -119,7 +107,7 @@ void createFiles() {
     "helpme \t\t\t\t: To display the set of commands that are available\n"
             "fcreate <file name> \t\t: To create a file\n"
             "fread <file name> \t\t: To read from a file that has read permission, or else display error\n"
-            "fwrite <file name> \t\t: To write to a file that has read-write permission or else display error\n"
+            "fwrite <file name> <contents> \t\t: To write to a file that has read-write permission or else display error with the given content\n"
             "dcreate <directory name> \t: To create a new directory\n"
             "currdir \t\t\t: To display the name of the current directory\n"
             "listitems \t\t\t: To display the names of all the files and directories within the current directory\n"
