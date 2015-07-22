@@ -52,7 +52,6 @@ void createDirectories(char curOS) {
         //TEST: print out the current directory (Of the running executable - might not the where the code is
         printf ("The current working directory is %s\n", cCurrentPath);
 
-
         //Create new directory
         mkdir (cCurrentPath, ACCESSPERMS);
         printf ("The directory was made: %s\n", cCurrentPath);
@@ -60,7 +59,6 @@ void createDirectories(char curOS) {
         printf ("The directory was made: %s\n", cSystemPath);
         mkdir (cAccountPath, ACCESSPERMS);
         printf ("The directory was made: %s\n", cAccountPath);
-
     }
     else if( curOS == 'm' ){
         mkdir("OS32", 0777);
