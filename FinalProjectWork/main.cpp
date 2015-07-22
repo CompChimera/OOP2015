@@ -17,6 +17,8 @@
     #define GetCurrentDir _getcwd
 #elif defined(__APPLE__)
     #include <sys/stat.h>
+    #include <unistd.h>
+    #define GetCurrentDir getcwd
 #else
 #include <unistd.h>
 #define GetCurrentDir getcwd
