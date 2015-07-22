@@ -20,8 +20,8 @@
     #include <unistd.h>
     #define GetCurrentDir getcwd
 #else
-#include <unistd.h>
-#define GetCurrentDir getcwd
+    #include <unistd.h>
+    #define GetCurrentDir getcwd
 #endif
 
 //Creates the directories needed by the rest of the system
@@ -204,8 +204,6 @@ int main() {
     #elif defined(__APPLE__)
         createDirectories('m');
         createFilesM();
-    #else
-    createDirectories('l');
 #endif
 
     printf("Ready to run OS32");
