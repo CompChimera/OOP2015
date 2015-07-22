@@ -61,14 +61,12 @@ void createDirectories(char curOS) {
         printf ("The directory was made: %s\n", cAccountPath);
     }
     else if( curOS == 'm' ){
-        mkdir("OS32", 0777);
-        mkdir("OS32/systems", 0777);
-        mkdir("OS32/systems/account", 0777);
+        mkdir("systems", 0777);
+        mkdir("systems/account", 0777);
     }
     else {
-        mkdir("OS32", 0777);
-        mkdir("OS32/systems", 0777);
-        mkdir("OS32/systems/account", 0777);
+        mkdir("systems", 0777);
+        mkdir("systems/account", 0777);
     }
 }
 
